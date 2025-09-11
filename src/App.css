@@ -1,14 +1,23 @@
 #root{
   width: 100%;
+    min-height: 100vh; /* 100% of the viewport */
+
 }
 .homepage{
+  height: 100%;
   width: 100%;
   display: flex;
   flex-direction: row;
 }
 .sidebar{
-  width: 30%;
+  width: 300px;
+  min-height: 100vh; /* 100% of the viewport */
+
 }
 .content{
-  width: 70%;
+  
+  flex: 1;
+  min-height: 100vh; /* 100% of the viewport */
+  background-color: beige;
+
 }

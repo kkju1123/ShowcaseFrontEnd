@@ -1,6 +1,6 @@
 import React from "react";
 
-import "../style/sidebar.scss"
+import "../style/sidebar.css";
 const navItems = [
   { label: "Home", href: "/" },
   { label: "Profile", href: "/profile" },
@@ -9,25 +9,28 @@ const navItems = [
 
 const Sidebar = () => {
   return (
-    <aside className="h-screen w-64 bg-gray-900 text-gray-100 flex flex-col shadow-2xl">
-      <div className="p-6 text-2xl font-bold tracking-wide border-b border-gray-700">
-        MyApp
+    <>
+      <div className="avatorBox">
+        <img className="image" src="" />
       </div>
-      <nav className="flex-1 p-4">
-        <ul className="space-y-2">
-          {navItems.map((item) => (
-            <li key={item.label}>
-              <a
-                href={item.href}
-                className="block px-4 py-2 rounded-xl hover:bg-gray-800 transition"
-              >
-                {item.label}
-              </a>
-            </li>
-          ))}
+      <nav>
+        <ul>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" 
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" 
+            class="lucide lucide-user-star-icon lucide-user-star">
+              <path d="M16.051 12.616a1 1 0 0 1 1.909.024l.737 1.452a1 
+              1 0 0 0 .737.535l1.634.256a1 1 0 0 1 .588 1.806l-1.172 1.168a1 1 0 0 0-.282.866l.259 1.613a1 1 0 0 1-1.541 1.134l-1.465-.75a1 
+              1 0 0 0-.912 0l-1.465.75a1 1 0 0 1-1.539-1.133l.258-1.613a1 1 0 0 0-.282-.866l-1.156-1.153a1 1 0 0 1 .572-1.822l1.633-.256a1 1
+               0 0 0 .737-.535z"/><path d="M8 15H7a4 4 0 0 0-4 4v2"/><circle cx="10" cy="7" r="4"/></svg>
+               <small>About Me</small>
+               
+          </li>
+          <li></li>
+          <li></li>
         </ul>
       </nav>
-    </aside>
+    </>
   );
 };
 
