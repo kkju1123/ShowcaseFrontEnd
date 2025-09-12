@@ -23,15 +23,21 @@ ul {
   padding: 0; /* Optional: remove default padding */
   margin: 0;
 }
-li{
-    padding-left: 20px;
-    
+li {
+  padding-left: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-small{
-    font-size: 17px;
-    font-weight: 500;
+span {
+  font-size: 17px;
+  font-weight: 500;
+  height: 20px;
+  vertical-align: bottom;
+    display: inline-block;
 
 }
-svg{
-    font-size: 17px;
+svg {
+  margin-right: 6px;
+  font-size: 17px;
 }
