@@ -1,11 +1,12 @@
 .sidebar {
-  background-color: antiquewhite;
+  background-color: white;
 }
 .image {
   width: 130px;
   height: 130px;
   border-radius: 50%;
   background-color: aquamarine;
+  position: absolute;
 }
 .avatorBox {
   width: 100%;
@@ -24,20 +25,65 @@ ul {
   margin: 0;
 }
 li {
-  padding-left: 20px;
+  color: #aaa;
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 50px;
+  transition: transform 1s ease, background-color 1s ease; /* 1 second */
+  transform: translateX(0);
+  cursor: pointer;
+}
+li:hover {
+  color: #639;
+  background-color: #d6d6f6;
+  transform: translateX(-12px); /* move left 12px */
 }
 span {
-  font-size: 17px;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 19px;
   font-weight: 500;
-  height: 20px;
   vertical-align: bottom;
-    display: inline-block;
-
+  display: inline-block;
+}
+.liContent {
+  width: 120px;
+  display: flex;
+  align-items: center;
+  justify-self: center;
 }
 svg {
   margin-right: 6px;
   font-size: 17px;
+}
+.avatorBox {
+  margin: 45px auto;
+  width: 150px;
+  height: 150px;
+  border: 1px solid #639;
+  border-radius: 50%;
+}
+.round {
+  width: 150px;
+  height: 150px;
+  border: 1px solid #639;
+  border-radius: 50%;
+  position: relative;
+  animation: spin 8s linear infinite; /* 2s per full turn */
+}
+.circle {
+  display: inline-block;
+  position: absolute;
+  left: 40px;
+  box-sizing: border-box;
+  border: 6px solid #639;
+  border-radius: 50%;
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
