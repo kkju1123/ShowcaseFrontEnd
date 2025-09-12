@@ -2,7 +2,6 @@ import React from "react";
 
 import "../style/sidebar.css";
 import avatar from "../assets/avator2.jpg";
-import AnimeAvatarFrame from "./AnimeAvatarFrame";
 
 const navItems = [
   { label: "Home", href: "/" },

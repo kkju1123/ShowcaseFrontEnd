@@ -1,4 +1,10 @@
 import React from "react";
-
-const Content = () => {}
+import AboutMe from "./aboutMe";
+const Content = () => {
+    return (
+        <div className="content">
+            <AboutMe/>
+        </div>
+    )
+}
 export default Content;
