@@ -13,7 +13,9 @@ function App() {
   return (
     <div className="homepage">
       <div className="sidebar">
+        <div className="sideContent">
       <Sidebar />
+      </div>
       </div>
 
       <div className="content">

@@ -20,7 +20,7 @@ const Sidebar = () => {
       </div>
       <nav>
         <ul>
-          <li>
+          <li className="sidebarli">
             <div className="liContent">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -32,7 +32,7 @@ const Sidebar = () => {
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                class="lucide lucide-user-star-icon lucide-user-star"
+                className="sidebarIcon"
               >
                 <path
                   d="M16.051 12.616a1 1 0 0 1 1.909.024l.737 1.452a1 
@@ -46,7 +46,7 @@ const Sidebar = () => {
               <span>About Me</span>
             </div>
           </li>
-          <li>
+          <li className="sidebarli">
             <div className="liContent">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -58,7 +58,7 @@ const Sidebar = () => {
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                class="lucide lucide-laptop-icon lucide-laptop"
+                className="sidebarIcon"
               >
                 <path
                   d="M18 5a2 2 0 0 1 2 2v8.526a2 2 0 0 0 .212.897l1.068 2.127a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45l1.068-2.127A2 2 0 
@@ -69,7 +69,7 @@ const Sidebar = () => {
               <span>Projects</span>
             </div>
           </li>
-          <li>
+          <li className="sidebarli">
             <div className="liContent">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -81,7 +81,7 @@ const Sidebar = () => {
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                class="lucide lucide-database-icon lucide-database"
+                className="sidebarIcon"
               >
                 <ellipse cx="12" cy="5" rx="9" ry="3" />
                 <path d="M3 5V19A9 3 0 0 0 21 19V5" />
@@ -90,7 +90,7 @@ const Sidebar = () => {
               <span>Github</span>
             </div>
           </li>
-          <li>
+          <li className="sidebarli">
             <div className="liContent">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -102,7 +102,7 @@ const Sidebar = () => {
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                class="lucide lucide-phone-icon lucide-phone"
+                className="sidebarIcon"
               >
                 <path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" />
               </svg>

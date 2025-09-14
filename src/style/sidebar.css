@@ -25,7 +25,7 @@ ul {
   padding: 0; /* Optional: remove default padding */
   margin: 0;
 }
-li {
+.sidebarli {
   color: #aaa;
   display: flex;
   align-items: center;
@@ -38,10 +38,9 @@ li {
 li:hover {
   color: #639;
   background-color: #d6d6f6;
-  transform: translateX(-12px); /* move left 12px */
 }
 span {
-  font-family: "Times New Roman", Times, serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 19px;
   font-weight: 500;
   vertical-align: bottom;
@@ -53,7 +52,7 @@ span {
   align-items: center;
   justify-self: center;
 }
-svg {
+.sidebarIcon {
   margin-right: 6px;
   font-size: 17px;
 }
@@ -80,11 +79,17 @@ svg {
   border: 6px solid #639;
   border-radius: 50%;
 }
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.contentPage {
+  width: 100%;
+  height: 100vh;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #000;
+  opacity: 0.9;
+}
+
+.copy{
+  margin-left: 7px;
 }
