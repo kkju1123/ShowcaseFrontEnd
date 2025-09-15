@@ -44,7 +44,7 @@ export default function AboutMe() {
       <div className="contentPage">
         <div className="profile-card">
           <div className="profile-header">
-            <h1 className="profile-name">KeKe Ju</h1>
+            <div className="profile-name">KeKe Ju</div>
             <p className="profile-title">
               Frontend Engineer & Machine Intelligence Specialist
             </p>
@@ -53,9 +53,9 @@ export default function AboutMe() {
           <div className="profile-content">
             <div className="left-column">
               <div className="section">
-                <h2 className="section-title">Education</h2>
+                <div className="section-title">Education</div>
                 <div className="education-item">
-                  <h3 className="item-title">Master of Science</h3>
+                  <div className="item-title">Master of Science</div>
                   <p className="item-subtitle">Machine Intelligence</p>
                   <p className="item-subtitle">
                     University of Basel, Switzerland
@@ -64,14 +64,14 @@ export default function AboutMe() {
                 </div>
 
                 <div className="education-item">
-                  <h3 className="item-title">Bachelor of Computer Science</h3>
+                  <div className="item-title">Bachelor of Computer Science</div>
                   <p className="item-subtitle">Shanghai Donghua University</p>
                   <p className="item-date">Sept 2017 - Jun 2021</p>
                 </div>
               </div>
 
               <div className="section">
-                <h2 className="section-title">Contact</h2>
+                <div className="section-title">Contact</div>
                 <div className="contact-info">
                   <div className="contact-info">
                     <div
@@ -207,9 +207,9 @@ export default function AboutMe() {
 
             <div className="right-column">
               <div className="section">
-                <h2 className="section-title">Work Experience</h2>
+                <div className="section-title">Work Experience</div>
                 <div className="experience-item">
-                  <h3 className="item-title">Frontend Engineer</h3>
+                  <div className="item-title">Frontend Engineer</div>
                   <p className="item-subtitle">Trip.com Group</p>
                   <p className="item-date">Jul 2021 - Aug 2023</p>
                   <ul className="aboutMeList">
@@ -237,7 +237,7 @@ export default function AboutMe() {
               </div>
 
               <div className="section">
-                <h2 className="section-title">Technical Skills</h2>
+                <div className="section-title">Technical Skills</div>
                 <div className="skills-container">
                   <div className="skill-item">
                     <i className="fab fa-html5 skill-icon"></i>
@@ -291,7 +291,7 @@ export default function AboutMe() {
               </div>
 
               <div className="section">
-                <h2 className="section-title">Languages</h2>
+                <div className="section-title">Languages</div>
                 <div className="skills-container">
                   <div className="skill-item">
                     <i className="fas fa-language skill-icon"></i>
@@ -303,7 +303,7 @@ export default function AboutMe() {
                   </div>
                   <div className="skill-item">
                     <i className="fas fa-language skill-icon"></i>
-                    <span>German (Intermediate)</span>
+                    <span>German (primary)</span>
                   </div>
                 </div>
               </div>

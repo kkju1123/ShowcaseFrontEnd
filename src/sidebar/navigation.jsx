@@ -1,15 +1,15 @@
-import React from "react";
 
 import "../style/sidebar.css";
 import avatar from "../assets/avator2.jpg";
-
+import React, { useState } from "react";
 const navItems = [
   { label: "Home", href: "/" },
   { label: "Profile", href: "/profile" },
   { label: "Settings", href: "/settings" },
 ];
-
 const Sidebar = () => {
+  let [active,setActive]=useState(1);
+
   return (
     <>
       <div className="avatorBox">
@@ -20,7 +20,7 @@ const Sidebar = () => {
       </div>
       <nav>
         <ul>
-          <li className="sidebarli">
+          <li className={active ==1 ?"active sidebarli":"sidebarli"} onClick={()=>{setActive(1)}}>
             <div className="liContent">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -46,7 +46,7 @@ const Sidebar = () => {
               <span>About Me</span>
             </div>
           </li>
-          <li className="sidebarli">
+          <li className={active==2?"active sidebarli":"sidebarli"} onClick={()=>{setActive(2)}}>
             <div className="liContent">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -69,7 +69,7 @@ const Sidebar = () => {
               <span>Projects</span>
             </div>
           </li>
-          <li className="sidebarli">
+          <li className={active==3?"active sidebarli":"sidebarli"} onClick={()=>{setActive(3)}}>
             <div className="liContent">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -87,10 +87,10 @@ const Sidebar = () => {
                 <path d="M3 5V19A9 3 0 0 0 21 19V5" />
                 <path d="M3 12A9 3 0 0 0 21 12" />
               </svg>
-              <span>Github</span>
+              <a href="https://github.com/kkju1123">Github</a>
             </div>
           </li>
-          <li className="sidebarli">
+          <li className={active==4?"active sidebarli":"sidebarli"} onClick={()=>{setActive(4)}}>
             <div className="liContent">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -106,7 +106,7 @@ const Sidebar = () => {
               >
                 <path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" />
               </svg>
-              <span>Contact</span>
+              <a href="https://www.linkedin.com/in/keke-ju-957436358/">Linkedin</a>
             </div>
           </li>
         </ul>

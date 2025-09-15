@@ -6,7 +6,6 @@
   width: 130px;
   height: 130px;
   border-radius: 50%;
-  background-color: aquamarine;
   position: absolute;
 }
 .avatorBox {
@@ -92,4 +91,28 @@ span {
 
 .copy{
   margin-left: 7px;
+}
+.active {
+  color: #639;
+  background-color: #d6d6f6;
+}
+
+a {
+  color: #aaa;
+  text-decoration: none;   /* 去掉下划线 */
+  transition: color 0.3s;  /* 平滑过渡 */
+  font-size: 19px;
+}
+
+a:hover {
+  color: #639;          /* 鼠标悬停颜色 */
+}
+
+a:active {
+  color: #639;          /* 点击时颜色 */
+}
+
+a:visited {
+
+  font-size: 19px;      /* 已访问过的链接颜色 */
 }
