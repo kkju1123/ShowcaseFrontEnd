@@ -23,8 +23,7 @@ const content = {
         features: ["User authentication", "CRUD operations", "Real-time updates", "Responsive design"],
         image: myImage,
         category: "personal",
-        link: "#",
-        github: "#"
+        link: "#"
       },
       {
         id: 2,
@@ -34,8 +33,7 @@ const content = {
         features: ["Content display", "User interaction", "Image gallery", "Comment system"],
         image: tmImage,
         category: "work",
-        link: "#",
-        github: "#"
+        link: "#"
       },
       {
         id: 3,
@@ -45,8 +43,7 @@ const content = {
         features: ["Multi-language support", "Dynamic content loading", "Locale management", "RTL support"],
         image: nrImage,
         category: "work",
-        link: "#",
-        github: "#"
+        link: "#"
       }
     ],
   },
@@ -69,8 +66,7 @@ const content = {
         features: ["用户认证", "增删改查", "实时更新", "响应式设计"],
         image: myImage,
         category: "personal",
-        link: "#",
-        github: "#"
+        link: "#"
       },
       {
         id: 2,
@@ -80,8 +76,7 @@ const content = {
         features: ["内容展示", "用户交互", "图片画廊", "评论系统"],
         image: tmImage,
         category: "work",
-        link: "#",
-        github: "#"
+        link: "#"
       },
       {
         id: 3,
@@ -91,8 +86,7 @@ const content = {
         features: ["多语言支持", "动态内容加载", "区域管理", "RTL 支持"],
         image: nrImage,
         category: "work",
-        link: "#",
-        github: "#"
+        link: "#"
       }
     ],
   },
@@ -327,18 +321,6 @@ const styles = {
     transition: 'all 0.3s ease',
     display: 'inline-block'
   },
-  githubLink: {
-    padding: '10px 20px',
-    borderRadius: '5px',
-    background: 'rgba(255, 255, 255, 0.1)',
-    color: '#fff',
-    textDecoration: 'none',
-    fontWeight: '500',
-    transition: 'all 0.3s ease',
-    display: 'inline-flex',
-    alignItems: 'center',
-    gap: '8px'
-  },
   icon: {
     fontSize: '1.1rem'
   }
@@ -360,13 +342,6 @@ Object.assign(styles.projectCard, {
 Object.assign(styles.demoLink, {
   ':hover': {
     background: 'rgba(230, 230, 250, 0.5)',
-    transform: 'translateY(-2px)'
-  }
-});
-
-Object.assign(styles.githubLink, {
-  ':hover': {
-    background: 'rgba(255, 255, 255, 0.2)',
     transform: 'translateY(-2px)'
   }
 });
