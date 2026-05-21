@@ -1,6 +1,3 @@
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-
 import AboutMe from "./content/aboutMe";
 import Work from "./content/work";
 import "./style/sidebar.css";
@@ -9,13 +6,9 @@ import React, { useState } from "react";
 import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
   let [active,setActive]=useState(1);
-const navItems = [
-  { label: "Home", href: "/" },
-  { label: "Profile", href: "/profile" },
-  { label: "Settings", href: "/settings" },
-];
+  const [language, setLanguage] = useState("en");
+  const isChinese = language === "zh";
   return (
     <div className="homepage">
       <div className="sidebar">
@@ -51,7 +44,7 @@ const navItems = [
                      <path d="M8 15H7a4 4 0 0 0-4 4v2" />
                      <circle cx="10" cy="7" r="4" />
                    </svg>
-                   <span>About Me</span>
+                   <span>{isChinese ? "关于我" : "About Me"}</span>
                  </div>
                </li>
                <li className={active==2?"active sidebarli":"sidebarli"} onClick={()=>{setActive(2)}}>
@@ -74,7 +67,7 @@ const navItems = [
                      />
                      <path d="M20.054 15.987H3.946" />
                    </svg>
-                   <span>Projects</span>
+                   <span>{isChinese ? "项目" : "Projects"}</span>
                  </div>
                </li>
                <li className={active==3?"active sidebarli":"sidebarli"} onClick={()=>{setActive(3)}}>
@@ -123,7 +116,15 @@ const navItems = [
       </div>
 
       <div className="content">
-      {active==1?<AboutMe/>:<Work/>}
+        <button
+          className="language-toggle"
+          type="button"
+          onClick={() => setLanguage(isChinese ? "en" : "zh")}
+          aria-label={isChinese ? "Switch to English" : "切换到中文"}
+        >
+          {isChinese ? "EN" : "中"}
+        </button>
+      {active==1?<AboutMe language={language}/>:<Work language={language}/>}
       </div>
     </div>
   );

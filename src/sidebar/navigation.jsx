@@ -2,11 +2,6 @@
 import "../style/sidebar.css";
 import avatar from "../assets/avator2.jpg";
 import React, { useState } from "react";
-const navItems = [
-  { label: "Home", href: "/" },
-  { label: "Profile", href: "/profile" },
-  { label: "Settings", href: "/settings" },
-];
 const Sidebar = () => {
   let [active,setActive]=useState(1);
 

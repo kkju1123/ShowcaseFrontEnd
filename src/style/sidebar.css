@@ -113,6 +113,46 @@ a:active {
 }
 
 a:visited {
+  font-size: 19px;
+}
 
-  font-size: 19px;      /* 已访问过的链接颜色 */
+@media (max-width: 768px) {
+  .avatorBox {
+    display: none !important;
+  }
+  nav {
+    width: 100%;
+  }
+  nav ul {
+    display: flex;
+    flex-direction: row;
+    height: 60px;
+    width: 100%;
+  }
+  .sidebarli {
+    flex: 1;
+    height: 60px;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .liContent {
+    flex-direction: column;
+    width: auto;
+    gap: 2px;
+    justify-content: center;
+  }
+  span {
+    font-size: 11px;
+  }
+  a {
+    font-size: 11px;
+  }
+  a:visited {
+    font-size: 11px;
+  }
+  .sidebarIcon {
+    width: 20px;
+    height: 20px;
+    margin-right: 0;
+  }
 }

@@ -344,15 +344,41 @@ body {
     padding: 30px 20px;
   }
 
-  div {
-    font-size: 1.8rem;
-  }
-
   .contact-item {
     padding: 15px;
   }
 
   .contact-value {
     font-size: 1rem;
+  }
+
+  .slide {
+    background-attachment: scroll;
+  }
+
+  .header-text {
+    left: 50%;
+    font-size: 1.3rem;
+    text-align: center;
+    width: 90%;
+  }
+
+  .arrow-container {
+    left: 50%;
+  }
+
+  .profile-name {
+    font-size: 1.8rem;
+  }
+
+  .profile-content {
+    padding: 15px;
+  }
+
+  .left-column,
+  .right-column {
+    min-width: unset;
+    width: 100%;
+    padding: 10px;
   }
 }

@@ -2,44 +2,106 @@ import React, { useState } from 'react';
 import tmImage from "../assets/tm.png";
 import nrImage from "../assets/nr.png";
 import myImage from "../assets/my.png";
-const Work = () => {
+
+const content = {
+  en: {
+    title: "Project Portfolio",
+    subtitle: "A collection of my recent work and personal projects",
+    filters: {
+      all: "All Projects",
+      personal: "Personal Projects",
+      work: "Work Projects",
+    },
+    technologyUsed: "Technology used",
+    keyFeatures: "Key Features",
+    projects: [
+      {
+        id: 1,
+        title: "Message Board Application",
+        description: "A full-stack message board application with separated frontend and backend architecture. Implemented user authentication, real-time updates, and a responsive design.",
+        technologies: ["React", "Spring Boot", "RESTful APIs", "MySQL", "JWT Authentication"],
+        features: ["User authentication", "CRUD operations", "Real-time updates", "Responsive design"],
+        image: myImage,
+        category: "personal",
+        link: "#",
+        github: "#"
+      },
+      {
+        id: 2,
+        title: "Trip.com Content Community - Note Details",
+        description: "Developed and optimized the note details page for Trip.com's content community platform. Enhanced user experience with intuitive design and smooth interactions.",
+        technologies: ["React", "CSS3", "Component Library", "Performance Optimization"],
+        features: ["Content display", "User interaction", "Image gallery", "Comment system"],
+        image: tmImage,
+        category: "work",
+        link: "#",
+        github: "#"
+      },
+      {
+        id: 3,
+        title: "Trip Domestic Content Community - i18n Internationalization",
+        description: "Implemented internationalization and localization for Trip's domestic content community. Supported multiple languages and regional preferences.",
+        technologies: ["React", "i18next", "Internationalization", "Localization"],
+        features: ["Multi-language support", "Dynamic content loading", "Locale management", "RTL support"],
+        image: nrImage,
+        category: "work",
+        link: "#",
+        github: "#"
+      }
+    ],
+  },
+  zh: {
+    title: "项目作品集",
+    subtitle: "近期工作项目与个人项目合集",
+    filters: {
+      all: "全部项目",
+      personal: "个人项目",
+      work: "工作项目",
+    },
+    technologyUsed: "使用技术",
+    keyFeatures: "核心功能",
+    projects: [
+      {
+        id: 1,
+        title: "留言板应用",
+        description: "一个前后端分离的全栈留言板应用，实现用户认证、实时更新和响应式设计。",
+        technologies: ["React", "Spring Boot", "RESTful API", "MySQL", "JWT 认证"],
+        features: ["用户认证", "增删改查", "实时更新", "响应式设计"],
+        image: myImage,
+        category: "personal",
+        link: "#",
+        github: "#"
+      },
+      {
+        id: 2,
+        title: "Trip.com 内容社区 - 笔记详情页",
+        description: "开发并优化 Trip.com 内容社区平台的笔记详情页，通过清晰的设计和顺畅的交互提升用户体验。",
+        technologies: ["React", "CSS3", "组件库", "性能优化"],
+        features: ["内容展示", "用户交互", "图片画廊", "评论系统"],
+        image: tmImage,
+        category: "work",
+        link: "#",
+        github: "#"
+      },
+      {
+        id: 3,
+        title: "Trip 国内内容社区 - i18n 国际化",
+        description: "为 Trip 国内内容社区实现国际化与本地化能力，支持多语言内容和区域偏好。",
+        technologies: ["React", "i18next", "国际化", "本地化"],
+        features: ["多语言支持", "动态内容加载", "区域管理", "RTL 支持"],
+        image: nrImage,
+        category: "work",
+        link: "#",
+        github: "#"
+      }
+    ],
+  },
+};
+
+const Work = ({ language = "en" }) => {
   const [activeFilter, setActiveFilter] = useState('all');
-  
-  const projects = [
-    {
-      id: 1,
-      title: "Message Board Application",
-      description: "A full-stack message board application with separated frontend and backend architecture. Implemented user authentication, real-time updates, and a responsive design.",
-      technologies: ["React", "Spring Boot", "RESTful APIs", "MySQL", "JWT Authentication"],
-      features: ["User authentication", "CRUD operations", "Real-time updates", "Responsive design"],
-      image: myImage,
-      category: "personal",
-      link: "#",
-      github: "#"
-    },
-    {
-      id: 2,
-      title: "Trip.com Content Community - Note Details",
-      description: "Developed and optimized the note details page for Trip.com's content community platform. Enhanced user experience with intuitive design and smooth interactions.",
-      technologies: ["React", "CSS3", "Component Library", "Performance Optimization"],
-      features: ["Content display", "User interaction", "Image gallery", "Comment system"],
-      image: tmImage,
-      category: "work",
-      link: "#",
-      github: "#"
-    },
-    {
-      id: 3,
-      title: "Trip Domestic Content Community - i18n Internationalization",
-      description: "Implemented internationalization and localization for Trip's domestic content community. Supported multiple languages and regional preferences.",
-      technologies: ["React", "i18next", "Internationalization", "Localization"],
-      features: ["Multi-language support", "Dynamic content loading", "Locale management", "RTL support"],
-      image: nrImage,
-      category: "work",
-      link: "#",
-      github: "#"
-    }
-  ];
+  const t = content[language] || content.en;
+  const projects = t.projects;
 
   const filteredProjects = activeFilter === 'all' 
     ? projects 
@@ -49,8 +111,8 @@ const Work = () => {
     <div style={styles.projectsShowcase}>
       <div style={styles.container}>
         <header style={styles.showcaseHeader}>
-          <div style={styles.title}>Project Portfolio</div>
-          <p style={styles.subtitle}>A collection of my recent work and personal projects</p>
+          <div style={styles.title}>{t.title}</div>
+          <p style={styles.subtitle}>{t.subtitle}</p>
         </header>
 
         <div style={styles.filterButtons}>
@@ -58,19 +120,19 @@ const Work = () => {
             style={activeFilter === 'all' ? {...styles.filterButton, ...styles.activeFilter} : styles.filterButton}
             onClick={() => setActiveFilter('all')}
           >
-            All Projects
+            {t.filters.all}
           </button>
           <button 
             style={activeFilter === 'personal' ? {...styles.filterButton, ...styles.activeFilter} : styles.filterButton}
             onClick={() => setActiveFilter('personal')}
           >
-            Personal Projects
+            {t.filters.personal}
           </button>
           <button 
             style={activeFilter === 'work' ? {...styles.filterButton, ...styles.activeFilter} : styles.filterButton}
             onClick={() => setActiveFilter('work')}
           >
-            Work Projects
+            {t.filters.work}
           </button>
         </div>
 
@@ -91,7 +153,7 @@ const Work = () => {
                 <p style={styles.projectDescription}>{project.description}</p>
                 
                 <div style={styles.techStack}>
-                <div style={styles.sectionTitle}>Technology used</div>
+                <div style={styles.sectionTitle}>{t.technologyUsed}</div>
                   <div style={styles.techTags}>
                     {project.technologies.map((tech, index) => (
                       <span key={index} style={styles.techTag}>{tech}</span>
@@ -100,7 +162,7 @@ const Work = () => {
                 </div>
                 
                 <div style={styles.features}>
-                  <div style={styles.sectionTitle}>Key Features</div>
+                  <div style={styles.sectionTitle}>{t.keyFeatures}</div>
                   <ul style={styles.featuresList}>
                     {project.features.map((feature, index) => (
                       <li key={index} style={styles.featureItem}>{feature}</li>
@@ -137,7 +199,7 @@ const styles = {
     marginBottom: '40px'
   },
   title: {
-    fontSize: '3.2rem',
+    fontSize: 'clamp(1.8rem, 5vw, 3.2rem)',
     marginBottom: '20px',
     fontWeight: '700',
     color: '#639',
@@ -173,7 +235,7 @@ const styles = {
   },
   projectsGrid: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))',
+    gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 320px), 1fr))',
     gap: '30px'
   },
   projectCard: {
