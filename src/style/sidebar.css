@@ -46,7 +46,7 @@ span {
   display: inline-block;
 }
 .liContent {
-  width: 120px;
+  width: 160px;
   display: flex;
   align-items: center;
   justify-self: center;

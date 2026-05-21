@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import tmImage from "../assets/tm.png";
 import nrImage from "../assets/nr.png";
 import myImage from "../assets/my.png";
+import ragImage from "../assets/rag.png";
 
 const content = {
   en: {
@@ -17,6 +18,16 @@ const content = {
     projects: [
       {
         id: 1,
+        title: "Production-Ready RAG Pipeline Adaptation",
+        description: "Based on the production-grade architecture concepts of the open-source scalable-rag-pipeline project, I studied its design principles in depth and engineered a lighter adaptation of the original AWS EKS, Ray distributed cluster, and vLLM self-hosted inference stack, independently completing the full practice from local development to cloud deployment.",
+        technologies: ["RAG", "LLM", "Docker", "Cloud Deployment", "System Architecture"],
+        features: ["Architecture analysis", "Infrastructure adaptation", "Local development", "Cloud deployment"],
+        image: ragImage,
+        category: "personal",
+        link: "#"
+      },
+      {
+        id: 2,
         title: "Message Board Application",
         description: "A full-stack message board application with separated frontend and backend architecture. Implemented user authentication, real-time updates, and a responsive design.",
         technologies: ["React", "Spring Boot", "RESTful APIs", "MySQL", "JWT Authentication"],
@@ -26,7 +37,7 @@ const content = {
         link: "#"
       },
       {
-        id: 2,
+        id: 3,
         title: "Trip.com Content Community - Note Details",
         description: "Developed and optimized the note details page for Trip.com's content community platform. Enhanced user experience with intuitive design and smooth interactions.",
         technologies: ["React", "CSS3", "Component Library", "Performance Optimization"],
@@ -36,7 +47,7 @@ const content = {
         link: "#"
       },
       {
-        id: 3,
+        id: 4,
         title: "Trip Domestic Content Community - i18n Internationalization",
         description: "Implemented internationalization and localization for Trip's domestic content community. Supported multiple languages and regional preferences.",
         technologies: ["React", "i18next", "Internationalization", "Localization"],
@@ -60,6 +71,16 @@ const content = {
     projects: [
       {
         id: 1,
+        title: "生产级 RAG Pipeline 裁剪与云端部署",
+        description: "基于开源项目 scalable-rag-pipeline 的生产级架构思想，深入研究其设计原理，将原项目依赖的 AWS EKS、Ray 分布式集群、vLLM 自托管推理等重型基础设施进行工程化裁剪与改造，独立完成从本地开发到云端部署的完整实践。",
+        technologies: ["RAG", "LLM", "Docker", "云部署", "系统架构"],
+        features: ["架构原理研究", "基础设施裁剪", "本地开发实践", "云端部署"],
+        image: ragImage,
+        category: "personal",
+        link: "#"
+      },
+      {
+        id: 2,
         title: "留言板应用",
         description: "一个前后端分离的全栈留言板应用，实现用户认证、实时更新和响应式设计。",
         technologies: ["React", "Spring Boot", "RESTful API", "MySQL", "JWT 认证"],
@@ -69,7 +90,7 @@ const content = {
         link: "#"
       },
       {
-        id: 2,
+        id: 3,
         title: "Trip.com 内容社区 - 笔记详情页",
         description: "开发并优化 Trip.com 内容社区平台的笔记详情页，通过清晰的设计和顺畅的交互提升用户体验。",
         technologies: ["React", "CSS3", "组件库", "性能优化"],
@@ -79,7 +100,7 @@ const content = {
         link: "#"
       },
       {
-        id: 3,
+        id: 4,
         title: "Trip 国内内容社区 - i18n 国际化",
         description: "为 Trip 国内内容社区实现国际化与本地化能力，支持多语言内容和区域偏好。",
         technologies: ["React", "i18next", "国际化", "本地化"],

@@ -1,5 +1,6 @@
 import AboutMe from "./content/aboutMe";
 import Work from "./content/work";
+import Certificates from "./content/certificates";
 import "./style/sidebar.css";
 import avatar from "./assets/avator2.jpg";
 import React, { useState } from "react";
@@ -9,6 +10,15 @@ function App() {
   let [active,setActive]=useState(1);
   const [language, setLanguage] = useState("en");
   const isChinese = language === "zh";
+  const renderContent = () => {
+    if (active === 1) {
+      return <AboutMe language={language}/>;
+    }
+    if (active === 2) {
+      return <Work language={language}/>;
+    }
+    return <Certificates language={language}/>;
+  };
   return (
     <div className="homepage">
       <div className="sidebar">
@@ -74,6 +84,27 @@ function App() {
                  <div className="liContent">
                    <svg
                      xmlns="http://www.w3.org/2000/svg"
+                     width="22"
+                     height="22"
+                     viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2"
+                     stroke-linecap="round"
+                     stroke-linejoin="round"
+                     className="sidebarIcon"
+                   >
+                     <path d="M15 2H9a2 2 0 0 0-2 2v14l5-3 5 3V4a2 2 0 0 0-2-2Z" />
+                     <path d="M9 7h6" />
+                     <path d="M9 11h6" />
+                   </svg>
+                   <span>{isChinese ? "证书" : "Certificates"}</span>
+                 </div>
+               </li>
+               <li className="sidebarli">
+                 <div className="liContent">
+                   <svg
+                     xmlns="http://www.w3.org/2000/svg"
                      width="24"
                      height="24"
                      viewBox="0 0 24 24"
@@ -103,7 +134,7 @@ function App() {
         >
           {isChinese ? "EN" : "中"}
         </button>
-      {active==1?<AboutMe language={language}/>:<Work language={language}/>}
+        {renderContent()}
       </div>
     </div>
   );

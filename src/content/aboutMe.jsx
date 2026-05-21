@@ -10,7 +10,7 @@ const content = {
   en: {
     name: "Keke Ju",
     header: "Welcome to Keke's Profile Page",
-    title: "Frontend Engineer & Machine Intelligence Specialist",
+    title: "AI Engineer & Machine Intelligence Specialist",
     education: "Education",
     master: "Master of Science",
     major: "Machine Intelligence",
@@ -55,7 +55,7 @@ const content = {
   zh: {
     name: "琚珂珂",
     header: "欢迎来到 Keke 的个人主页",
-    title: "前端工程师 & 机器智能方向学习者",
+    title: "AI工程师 & 机器智能方向学习者",
     education: "教育经历",
     master: "理学硕士",
     major: "机器智能",
