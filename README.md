@@ -1,12 +1,39 @@
-# React + Vite
+# ShowcaseFrontEnd
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+个人作品展示网站，基于 React 19 + Vite 7 构建。
 
-Currently, two official plugins are available:
+## 环境要求
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Node.js 20.19+ 或 22.12+（Vite 7 的要求）
+- npm
 
-## Expanding the ESLint configuration
+## 启动方式
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+# 安装依赖
+npm install
+
+# 启动开发服务器（支持热更新）
+npm run dev
+```
+
+启动后访问：<http://localhost:5173>
+
+## 其他命令
+
+```bash
+# 构建生产版本，输出到 dist/
+npm run build
+
+# 本地预览构建结果
+npm run preview   # 访问 http://localhost:4173
+
+# 代码检查
+npm run lint
+```
+
+## 访问链接
+
+- 本地开发：<http://localhost:5173>
+- 本地预览：<http://localhost:4173>
+- 线上地址：<!-- TODO: 填写个人服务器上的访问地址 -->

@@ -117,25 +117,20 @@ body {
   padding: 30px;
 }
 
-.left-column {
-  flex: 1;
-  min-width: 300px;
+.single-column {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
   padding: 20px;
 }
 
-.right-column {
-  flex: 2;
-  min-width: 300px;
-  padding: 20px;
-  border-left: 1px solid #eaeaea;
-}
 
 .section {
   margin-bottom: 30px;
 }
 
 .section-title {
-  font-size: 1.5rem;
+  font-size: 1.05rem;
   color: #639;
   margin-bottom: 20px;
   padding-bottom: 10px;
@@ -176,6 +171,7 @@ body {
 
 .skill-item {
   color: #639;
+  font-size: 0.9rem;
   background: #f5f7fa;
   padding: 10px 20px;
   border-radius: 50px;
@@ -193,7 +189,7 @@ body {
 
 .skill-icon {
   margin-right: 10px;
-  font-size: 1.2rem;
+  font-size: 1em;
 }
 
 .contact-info {
@@ -214,10 +210,6 @@ body {
     flex-direction: column;
   }
 
-  .right-column {
-    border-left: none;
-    border-top: 1px solid #eaeaea;
-  }
 }
 .aboutMeList {
   color: #7f8c8d;
@@ -375,10 +367,87 @@ body {
     padding: 15px;
   }
 
-  .left-column,
-  .right-column {
-    min-width: unset;
-    width: 100%;
+  .single-column {
     padding: 10px;
   }
+}
+.resume-item {
+  margin-bottom: 18px;
+  color: #000;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+.resume-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+}
+.resume-name {
+  color: #639;
+  font-weight: 600;
+}
+.resume-meta {
+  flex-shrink: 0;
+  text-align: right;
+}
+.resume-line {
+  margin: 2px 0;
+}
+.resume-bullets {
+  list-style: disc;
+  padding-left: 1.5em;
+  margin: 4px 0;
+}
+.resume-bullets li {
+  margin-bottom: 4px;
+}
+@media (max-width: 768px) {
+  .resume-row {
+    flex-direction: column;
+    gap: 0;
+  }
+  .resume-meta {
+    text-align: left;
+  }
+}
+.intro {
+  color: #000;
+  font-size: 0.9rem;
+  line-height: 1.8;
+}
+.intro-line {
+  margin: 0;
+}
+.intro-label {
+  color: #639;
+  font-weight: 600;
+}
+.intro-sep {
+  color: #999;
+  margin: 0 12px;
+}
+.intro-copy {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+.intro-copy:hover {
+  color: #639;
+}
+.intro-copy-icon {
+  opacity: 0.5;
+}
+.intro-copy:hover .intro-copy-icon {
+  opacity: 1;
+}
+.intro-copy-icon.copied {
+  opacity: 1;
+  color: #2e9e5b;
 }

@@ -1,0 +1,54 @@
+.project-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.project-card:hover,
+.project-card:focus-visible {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 30px rgba(102, 51, 153, 0.2) !important;
+}
+.project-card:focus-visible,
+.project-back:focus-visible {
+  outline: 2px solid #639;
+  outline-offset: 3px;
+}
+.project-card .project-cover {
+  transition: transform 0.5s ease;
+}
+.project-card:hover .project-cover {
+  transform: scale(1.05);
+}
+.project-card:hover .project-view-details {
+  color: #639;
+}
+.project-arrow {
+  display: inline-block;
+  transition: transform 0.25s ease;
+}
+.project-card:hover .project-arrow {
+  transform: translateX(4px);
+}
+.project-back:hover {
+  background: rgba(230, 230, 250, 0.9) !important;
+}
+.project-detail {
+  animation: project-detail-in 0.3s ease;
+}
+@keyframes project-detail-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .project-card,
+  .project-card .project-cover,
+  .project-arrow,
+  .project-detail {
+    transition: none;
+    animation: none;
+  }
+}

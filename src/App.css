@@ -38,7 +38,7 @@
   color: #639;
   box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
   cursor: pointer;
-  font-size: 15px;
+  font-size: 0.9375rem;
   font-weight: 700;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }

@@ -3,13 +3,42 @@ import Work from "./content/work";
 import Certificates from "./content/certificates";
 import "./style/sidebar.css";
 import avatar from "./assets/avator2.jpg";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
+
+const LANGUAGE_KEY = "language";
+
+// 优先使用用户手动选择过的语言，否则按浏览器语言：中文 -> zh，其余 -> en
+function detectLanguage() {
+  try {
+    const saved = localStorage.getItem(LANGUAGE_KEY);
+    if (saved === "zh" || saved === "en") return saved;
+  } catch {
+    // localStorage 不可用时忽略
+  }
+  const browserLanguages = navigator.languages?.length ? navigator.languages : [navigator.language];
+  const prefersChinese = browserLanguages.some((lang) => lang?.toLowerCase().startsWith("zh"));
+  return prefersChinese ? "zh" : "en";
+}
 
 function App() {
   let [active,setActive]=useState(1);
-  const [language, setLanguage] = useState("en");
+  const [language, setLanguage] = useState(detectLanguage);
   const isChinese = language === "zh";
+
+  useEffect(() => {
+    document.documentElement.lang = isChinese ? "zh-CN" : "en";
+  }, [isChinese]);
+
+  const toggleLanguage = () => {
+    const next = isChinese ? "en" : "zh";
+    setLanguage(next);
+    try {
+      localStorage.setItem(LANGUAGE_KEY, next);
+    } catch {
+      // localStorage 不可用时忽略
+    }
+  };
   const renderContent = () => {
     if (active === 1) {
       return <AboutMe language={language}/>;
@@ -129,7 +158,7 @@ function App() {
         <button
           className="language-toggle"
           type="button"
-          onClick={() => setLanguage(isChinese ? "en" : "zh")}
+          onClick={toggleLanguage}
           aria-label={isChinese ? "Switch to English" : "切换到中文"}
         >
           {isChinese ? "EN" : "中"}

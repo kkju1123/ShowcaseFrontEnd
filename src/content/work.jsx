@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import "../style/work.css";
 import tmImage from "../assets/tm.png";
 import nrImage from "../assets/nr.png";
 import myImage from "../assets/my.png";
@@ -15,7 +16,30 @@ const content = {
     },
     technologyUsed: "Technology used",
     keyFeatures: "Key Features",
+    introduction: "Introduction",
+    viewDetails: "View details",
+    backToList: "Back to projects",
+    implementation: "Implementation",
     projects: [
+      {
+        id: 5,
+        title: "TrainWatch: An Intelligent Ops Agent for Long-Running Model Training",
+        description: "While training models during my internship, a full run took several days and couldn't be watched by hand around the clock; if training crashed or diverged halfway, carrying on wasted time and compute. So I built a monitoring agent that detects anomalies in real time, diagnoses root causes on its own, and resumes after human approval, keeping long training runs on track while unattended.",
+        implementation: [
+          {
+            lead: "Incident-handling agent (layered Workflow + Agent design)",
+            text: "Built the incident-handling state machine with LangGraph. Deterministic rules handle anomaly detection and severity grading; a diagnosis agent investigates root causes through log / metric tools and CodeAct, and a Critic reviews the evidence chain. High-risk actions go through Human-in-the-loop approval via interrupt() plus Feishu cards, with state persisted by a SQLite checkpointer.",
+          },
+          {
+            lead: "Agentic RAG and evaluation",
+            text: "Built a knowledge base from the official PyTorch docs and GitHub issues, using bge-m3 hybrid dense + sparse retrieval, RRF fusion, and reranking, with the agent deciding on its own when to retrieve. Built Failure Gym, a fault-injection evaluation set covering OOM, NaN, hangs, and process crashes, and validated each module through ablation experiments.",
+          },
+        ],
+        technologies: ["Python", "FastAPI", "LangGraph", "Qdrant", "Neo4j", "Redis", "PostgreSQL", "Docker Compose", "Hetzner Cloud", "JWT", "SSE"],
+        image: null,
+        category: "personal",
+        link: "#"
+      },
       {
         id: 1,
         title: "Production-Ready RAG Pipeline Adaptation",
@@ -68,7 +92,30 @@ const content = {
     },
     technologyUsed: "使用技术",
     keyFeatures: "核心功能",
+    introduction: "项目介绍",
+    viewDetails: "查看详情",
+    backToList: "返回项目列表",
+    implementation: "项目实现",
     projects: [
+      {
+        id: 5,
+        title: "TrainWatch：长周期模型训练的智能运维 Agent",
+        description: "在实习训练模型时遇到痛点：训练所有 epoch 长达几天，无法完全人工值守，如果训练半路出错或者发散，继续训练将浪费时间和算力资源。所以开发监控 Agent，实现异常实时检测、根因自主诊断、人工审批后恢复，让长周期训练在无人值守时也可以正常进行。",
+        implementation: [
+          {
+            lead: "故障处理 Agent（Workflow + Agent 分层设计）",
+            text: "基于 LangGraph 构建故障处理状态机。确定性规则负责异常检测与分级；诊断 Agent 通过日志 / 指标工具和 CodeAct 调查根因，再由 Critic 审查证据链。高风险操作通过 interrupt() 加飞书卡片实现 Human-in-the-loop 审批，用 SQLite checkpointer 持久化状态。",
+          },
+          {
+            lead: "Agentic RAG 与评估体系",
+            text: "基于 PyTorch 官方文档和 GitHub issues 构建知识库，采用 bge-m3 稠密加稀疏的混合检索、RRF 融合和 rerank，由 Agent 自主决定何时检索。搭建 Failure Gym 故障注入评估集（覆盖 OOM、NaN、hang、进程崩溃），通过消融实验验证各模块的效果。",
+          },
+        ],
+        technologies: ["Python", "FastAPI", "LangGraph", "Qdrant", "Neo4j", "Redis", "PostgreSQL", "Docker Compose", "Hetzner Cloud", "JWT", "SSE"],
+        image: null,
+        category: "personal",
+        link: "#"
+      },
       {
         id: 1,
         title: "生产级 RAG Pipeline 裁剪与云端部署",
@@ -115,12 +162,116 @@ const content = {
 
 const Work = ({ language = "en" }) => {
   const [activeFilter, setActiveFilter] = useState('all');
+  const [selectedId, setSelectedId] = useState(null);
+  const listScrollY = useRef(0);
   const t = content[language] || content.en;
   const projects = t.projects;
+  const colon = language === "zh" ? "：" : ": ";
 
   const filteredProjects = activeFilter === 'all' 
     ? projects 
     : projects.filter(project => project.category === activeFilter);
+  const selectedProject = projects.find(project => project.id === selectedId);
+
+  // 详情页写入浏览器历史，这样浏览器返回键也能回到列表
+  useEffect(() => {
+    const onPopState = (event) => {
+      setSelectedId(event.state?.projectId ?? null);
+    };
+    window.addEventListener('popstate', onPopState);
+    return () => window.removeEventListener('popstate', onPopState);
+  }, []);
+
+  useEffect(() => {
+    if (selectedId === null) {
+      window.scrollTo(0, listScrollY.current);
+      return;
+    }
+    window.scrollTo(0, 0);
+    const onKeyDown = (event) => {
+      if (event.key === 'Escape') closeProject();
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [selectedId]);
+
+  const openProject = (id) => {
+    listScrollY.current = window.scrollY;
+    window.history.pushState({ projectId: id }, '');
+    setSelectedId(id);
+  };
+
+  function closeProject() {
+    if (window.history.state?.projectId != null) {
+      window.history.back();
+    } else {
+      setSelectedId(null);
+    }
+  }
+
+  const renderCover = (project, style) => (
+    project.image ? (
+      <img src={project.image} alt={project.title} style={style} className="project-cover" />
+    ) : (
+      <div style={styles.imagePlaceholder} className="project-cover">{project.title.split(/[:：]/)[0]}</div>
+    )
+  );
+
+  if (selectedProject) {
+    return (
+      <div style={styles.projectsShowcase}>
+        <div style={styles.detailContainer} className="project-detail">
+          <button type="button" style={styles.backButton} className="project-back" onClick={closeProject}>
+            ← {t.backToList}
+          </button>
+
+          <div style={styles.detailCover}>{renderCover(selectedProject, styles.projectImage)}</div>
+
+          <span style={styles.categoryTag}>{t.filters[selectedProject.category]}</span>
+          <h1 style={styles.detailTitle}>{selectedProject.title}</h1>
+
+          <p style={styles.projectDescription}>
+            <strong style={styles.featureLead}>{t.introduction}{colon}</strong>
+            {selectedProject.description}
+          </p>
+
+          {selectedProject.implementation && (
+            <div style={styles.features}>
+              <div style={styles.sectionTitle}>{t.implementation}</div>
+              <ul style={styles.featuresList}>
+                {selectedProject.implementation.map((item) => (
+                  <li key={item.lead} style={styles.featureItem}>
+                    <strong style={styles.featureLead}>{item.lead}{colon}</strong>
+                    {item.text}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          <div style={styles.techStack}>
+            <div style={styles.sectionTitle}>{t.technologyUsed}</div>
+            <div style={styles.techTags}>
+              {selectedProject.technologies.map((tech) => (
+                <span key={tech} style={styles.techTag}>{tech}</span>
+              ))}
+            </div>
+          </div>
+
+          {selectedProject.features && (
+            <div style={styles.features}>
+              <div style={styles.sectionTitle}>{t.keyFeatures}</div>
+              <ul style={styles.featuresList}>
+                {selectedProject.features.map((feature) => (
+                  <li key={feature} style={styles.featureItem}>{feature}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div style={styles.projectsShowcase}>
@@ -131,63 +282,35 @@ const Work = ({ language = "en" }) => {
         </header>
 
         <div style={styles.filterButtons}>
-          <button 
-            style={activeFilter === 'all' ? {...styles.filterButton, ...styles.activeFilter} : styles.filterButton}
-            onClick={() => setActiveFilter('all')}
-          >
-            {t.filters.all}
-          </button>
-          <button 
-            style={activeFilter === 'personal' ? {...styles.filterButton, ...styles.activeFilter} : styles.filterButton}
-            onClick={() => setActiveFilter('personal')}
-          >
-            {t.filters.personal}
-          </button>
-          <button 
-            style={activeFilter === 'work' ? {...styles.filterButton, ...styles.activeFilter} : styles.filterButton}
-            onClick={() => setActiveFilter('work')}
-          >
-            {t.filters.work}
-          </button>
+          {['all', 'personal', 'work'].map((filter) => (
+            <button
+              key={filter}
+              style={activeFilter === filter ? {...styles.filterButton, ...styles.activeFilter} : styles.filterButton}
+              onClick={() => setActiveFilter(filter)}
+            >
+              {t.filters[filter]}
+            </button>
+          ))}
         </div>
 
         <div style={styles.projectsGrid}>
           {filteredProjects.map(project => (
-            <div key={project.id} style={styles.projectCard}>
-              <div style={styles.imageContainer}>
-                <img 
-                  src={project.image} 
-                  alt={project.title} 
-                  style={styles.projectImage}
-                />
-                
-              </div>
-              
-              <div style={styles.projectContent}>
+            <button
+              key={project.id}
+              type="button"
+              style={styles.projectCard}
+              className="project-card"
+              onClick={() => openProject(project.id)}
+            >
+              <div style={styles.imageContainer}>{renderCover(project, styles.projectImage)}</div>
+              <div style={styles.cardBody}>
+                <span style={styles.categoryTag}>{t.filters[project.category]}</span>
                 <div style={styles.projectTitle}>{project.title}</div>
-                <p style={styles.projectDescription}>{project.description}</p>
-                
-                <div style={styles.techStack}>
-                <div style={styles.sectionTitle}>{t.technologyUsed}</div>
-                  <div style={styles.techTags}>
-                    {project.technologies.map((tech, index) => (
-                      <span key={index} style={styles.techTag}>{tech}</span>
-                    ))}
-                  </div>
-                </div>
-                
-                <div style={styles.features}>
-                  <div style={styles.sectionTitle}>{t.keyFeatures}</div>
-                  <ul style={styles.featuresList}>
-                    {project.features.map((feature, index) => (
-                      <li key={index} style={styles.featureItem}>{feature}</li>
-                    ))}
-                  </ul>
-                </div>
-                
-               
+                <span style={styles.viewDetails} className="project-view-details">
+                  {t.viewDetails} <span className="project-arrow">→</span>
+                </span>
               </div>
-            </div>
+            </button>
           ))}
         </div>
       </div>
@@ -250,22 +373,86 @@ const styles = {
   },
   projectsGrid: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 320px), 1fr))',
+    gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 420px), 1fr))',
     gap: '30px'
   },
   projectCard: {
-    background: 'rgba(255, 255, 255, 0.05)',
+    display: 'block',
+    width: '100%',
+    padding: 0,
+    textAlign: 'left',
+    font: 'inherit',
+    cursor: 'pointer',
+    background: '#fff',
     borderRadius: '15px',
     overflow: 'hidden',
-    boxShadow: '0 10px 30px rgba(0, 0, 0, 0.2)',
-    transition: 'transform 0.3s ease',
-    backdropFilter: 'blur(10px)',
-    border: '1px solid rgba(255, 255, 255, 0.1)'
+    boxShadow: '0 6px 20px rgba(0, 0, 0, 0.12)',
+    border: '1px solid rgba(102, 51, 153, 0.08)'
+  },
+  cardBody: {
+    padding: '18px 22px 20px',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '8px'
+  },
+  categoryTag: {
+    alignSelf: 'flex-start',
+    display: 'inline-block',
+    padding: '2px 10px',
+    borderRadius: '10px',
+    background: 'rgba(230, 230, 250, 0.7)',
+    color: '#639',
+    fontSize: '0.75rem'
+  },
+  viewDetails: {
+    color: '#999',
+    fontSize: '0.85rem'
+  },
+  detailContainer: {
+    maxWidth: '860px',
+    margin: '0 auto',
+    padding: '20px 0 60px'
+  },
+  backButton: {
+    padding: '8px 16px',
+    marginBottom: '24px',
+    border: 'none',
+    borderRadius: '20px',
+    background: 'rgba(230, 230, 250, 0.5)',
+    color: '#639',
+    font: 'inherit',
+    fontSize: '0.9rem',
+    cursor: 'pointer'
+  },
+  detailCover: {
+    height: '320px',
+    borderRadius: '15px',
+    overflow: 'hidden',
+    marginBottom: '24px',
+    boxShadow: '0 6px 20px rgba(0, 0, 0, 0.12)'
+  },
+  detailTitle: {
+    fontSize: '1.6rem',
+    color: '#639',
+    fontWeight: '700',
+    margin: '12px 0 20px'
   },
   imageContainer: {
     position: 'relative',
     height: '200px',
     overflow: 'hidden'
+  },
+  imagePlaceholder: {
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    background: 'linear-gradient(135deg, #6a11cb 0%, #639 100%)',
+    color: '#fff',
+    fontSize: '2rem',
+    fontWeight: '700',
+    letterSpacing: '0.05em'
   },
   projectImage: {
     width: '100%',
@@ -288,12 +475,12 @@ const styles = {
     padding: '25px'
   },
   projectTitle: {
-    fontSize: '1.5rem',
-    marginBottom: '15px',
+    fontSize: '1.1rem',
     color: '#639',
     fontWeight: '600'
   },
   projectDescription: {
+    fontSize: '0.9rem',
     color: '#999',
     marginBottom: '20px',
     lineHeight: '1.6'
@@ -302,7 +489,7 @@ const styles = {
     marginBottom: '20px'
   },
   sectionTitle: {
-    fontSize: '1.1rem',
+    fontSize: '1rem',
     marginBottom: '10px',
     color: '#639',
     fontWeight: '500'
@@ -317,16 +504,23 @@ const styles = {
     borderRadius: '15px',
     background: 'rgba(230, 230, 250, 0.5)',
     color: '#639',
-    fontSize: '0.85rem'
+    fontSize: '0.8rem'
   },
   features: {
+    marginBottom: '20px'
   },
   featuresList: {
     paddingLeft: '20px'
   },
   featureItem: {
+    fontSize: '0.9rem',
     marginBottom: '8px',
-    color: '#999'
+    color: '#999',
+    lineHeight: '1.6'
+  },
+  featureLead: {
+    color: '#639',
+    fontWeight: '600'
   },
   projectLinks: {
     display: 'flex',
@@ -351,12 +545,6 @@ const styles = {
 Object.assign(styles.filterButton, {
   ':hover': {
     background: 'rgba(230, 230, 250, 0.5)'
-  }
-});
-
-Object.assign(styles.projectCard, {
-  ':hover': {
-    transform: 'translateY(-5px)'
   }
 });
 

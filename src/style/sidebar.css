@@ -7,6 +7,7 @@
   height: 130px;
   border-radius: 50%;
   position: absolute;
+  z-index: 1;
 }
 .avatorBox {
   width: 100%;
@@ -34,13 +35,13 @@ ul {
   transform: translateX(0);
   cursor: pointer;
 }
-li:hover {
+.sidebar li:hover {
   color: #639;
   background-color: #d6d6f6;
 }
-span {
+.sidebar span {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 19px;
+  font-size: 1.1875rem;
   font-weight: 500;
   vertical-align: bottom;
   display: inline-block;
@@ -53,7 +54,7 @@ span {
 }
 .sidebarIcon {
   margin-right: 6px;
-  font-size: 17px;
+  font-size: 1.0625rem;
 }
 .avatorBox {
   margin: 45px auto;
@@ -61,22 +62,38 @@ span {
   height: 150px;
   border: 1px solid #639;
   border-radius: 50%;
+  position: relative;
 }
 .round {
   width: 150px;
   height: 150px;
   border: 1px solid #639;
   border-radius: 50%;
-  position: relative;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
   animation: spin 8s linear infinite; /* 2s per full turn */
 }
 .circle {
   display: inline-block;
   position: absolute;
-  left: 40px;
+  left: 50%;
+  top: 0;
+  width: 12px;
+  height: 12px;
   box-sizing: border-box;
-  border: 6px solid #639;
+  background: #639;
   border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 .contentPage {
   width: 100%;
@@ -97,23 +114,23 @@ span {
   background-color: #d6d6f6;
 }
 
-a {
+.sidebar a {
   color: #aaa;
   text-decoration: none;   /* 去掉下划线 */
   transition: color 0.3s;  /* 平滑过渡 */
-  font-size: 19px;
+  font-size: 1.1875rem;
 }
 
-a:hover {
+.sidebar a:hover {
   color: #639;          /* 鼠标悬停颜色 */
 }
 
-a:active {
+.sidebar a:active {
   color: #639;          /* 点击时颜色 */
 }
 
-a:visited {
-  font-size: 19px;
+.sidebar a:visited {
+  font-size: 1.1875rem;
 }
 
 @media (max-width: 768px) {
@@ -141,14 +158,14 @@ a:visited {
     gap: 2px;
     justify-content: center;
   }
-  span {
-    font-size: 11px;
+  .sidebar span {
+    font-size: 0.6875rem;
   }
-  a {
-    font-size: 11px;
+  .sidebar a {
+    font-size: 0.6875rem;
   }
-  a:visited {
-    font-size: 11px;
+  .sidebar a:visited {
+    font-size: 0.6875rem;
   }
   .sidebarIcon {
     width: 20px;
