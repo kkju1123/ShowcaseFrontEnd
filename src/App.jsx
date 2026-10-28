@@ -8,7 +8,7 @@ import "./App.css";
 
 const LANGUAGE_KEY = "language";
 
-// 优先使用用户手动选择过的语言，否则按浏览器语言：中文 -> zh，其余 -> en
+// 优先使用用户手动选择过的语言，否则默认中文
 function detectLanguage() {
   try {
     const saved = localStorage.getItem(LANGUAGE_KEY);
@@ -16,9 +16,7 @@ function detectLanguage() {
   } catch {
     // localStorage 不可用时忽略
   }
-  const browserLanguages = navigator.languages?.length ? navigator.languages : [navigator.language];
-  const prefersChinese = browserLanguages.some((lang) => lang?.toLowerCase().startsWith("zh"));
-  return prefersChinese ? "zh" : "en";
+  return "zh";
 }
 
 function App() {
